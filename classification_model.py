@@ -61,3 +61,12 @@ model_0 = circle_model().to(device)
 
 # print(next(model_0.parameters()).device)
 
+loss = nn.BCEWithLogitsLoss()
+
+optimizer = torch.optim.SGD(params=model_0.parameters(),
+                            lr=0.1)
+
+def accuracy(y_true, y_pred):
+    correct = torch.eq(y_true, y_pred).sum().item()
+    acc = (correct/len(y_pred))*100
+    return acc
